@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require_relative 'featured_ids'
-require 'pry'
+require_relative '../featured_ids/featured_ids'
 
 class FeaturedIdsTest < Minitest::Test
   def setup
