@@ -2,8 +2,6 @@
 
 require 'singleton'
 require_relative 'problem'
-CATEGORIES = %w[addition subtraction multiplication division].freeze
-SYMBOL_CATEGORIES = %w[+ - * /].freeze
 
 # ProblemGenerator class
 # This class is responsible for generating problems based on the category

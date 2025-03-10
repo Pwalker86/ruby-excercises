@@ -11,4 +11,8 @@ class Problem
     @operands = operands
     @answer = answer
   end
+
+  def print
+    puts "#{@operands.join(" #{@operator} ")} = ?"
+  end
 end

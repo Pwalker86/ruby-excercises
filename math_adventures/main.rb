@@ -2,9 +2,16 @@
 
 require_relative 'flashcard'
 
+CATEGORIES = {
+  '+' => 'addition',
+  '-' => 'subtraction',
+  '*' => 'multiplication',
+  '/' => 'division'
+}.freeze
+
 puts 'Welcome to Math Adventure!'
 puts 'What category would you like to practice? (+, -, *, /)'
-category = gets.chomp
+category = CATEGORIES[gets.chomp]
 
 puts 'How many questions would you like to answer?'
 number_of_questions = gets.chomp.to_i
