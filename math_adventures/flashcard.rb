@@ -1,18 +1,21 @@
 # frozen_string_literal: true
 
+require_relative 'problem_generator_ai'
 require_relative 'problem_generator'
 require_relative 'problem_checker'
 
 class FlashCard
   attr_reader :category, :problem
 
-  def initialize(category)
+  def initialize(category, category_symbol, grade)
     @category = category
+    @category_symbol = category_symbol
+    @grade = grade
+    @problem = ProblemGeneratorAI.instance.generate_problem(@category, @category_symbol, @grade)
   end
 
-  def generate_and_display_problem
-    @problem = ProblemGenerator.instance.generate_problem(@category)
-    puts "#{@problem.operands.join(" #{@problem.operator} ")} = ?"
+  def print
+    puts @problem.print
   end
 
   def user_answer
