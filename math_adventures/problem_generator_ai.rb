@@ -18,11 +18,12 @@ class ProblemGeneratorAI
   def generate_problem(category, _category_symbol, grade)
     result = @client.generate(
       { model: 'llama3.2',
-        prompt: "generate a #{category} problem appropriate for #{ordinalize(grade)} grade that aligns with common core standards. only give me the problem and the answer in this format: { 'problem': ..., 'answer': ...}",
+        prompt: "generate a #{category} problem that is appropriate for the #{ordinalize(grade)} grade.
+ The response should be in the following format: {problem: ..., answer:...}
+ Ensure that the problems match the requested format
+ There should be no extra frill or commentary in the questions",
+        # prompt: "generate a #{category} problem appropriate for #{ordinalize(grade)} grade that aligns with common core standards. only give me the problem and the answer in this format: { 'problem': ..., 'answer': ...}",
         # prompt: "generate a #{category} problem appropriate for #{ordinalize(grade)} grade that aligns with common core standards. only give me the problem, the standards they align with and the answer in this format: { 'problem': ..., 'answer': ..., 'standards': [...] }",
-        options: {
-          repeat_penalty: 1.5
-        },
         format: 'json',
         stream: false }
     )
@@ -35,6 +36,7 @@ class ProblemGeneratorAI
 
   def formatted_result(result)
     res = result[0]['response']
+    binding.pry
     res = res[res.index('{')..res.index('}')].gsub('\'', '"')
     JSON.parse(res)
   end
