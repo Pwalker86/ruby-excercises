@@ -100,15 +100,15 @@ class ISO20022Validator
   end
 end
 
-# Main execution when run as a script
+# Main execution code starts here
 if __FILE__ == $PROGRAM_NAME
   options = {}
   rules = nil
-
+  
   # Parse command line options
   OptionParser.new do |opts|
-    opts.banner = 'Usage: ruby xml_parser.rb [options] <path_to_xml_file>'
-
+    opts.banner = "Usage: ruby xml_parser.rb [options] <path_to_xml_file>"
+    
     opts.on('-r', '--rules=FILE', 'JSON file containing validation rules') do |file|
       if File.exist?(file)
         begin
